@@ -1,0 +1,3 @@
+2.08 5.70 SPEAKER_00 Oh, Rhett! Rhett! Oh, 
+6.02 9.26 None Rhett! Where will I go? What'll I do? 
+9.88 13.08 SPEAKER_01 Frankly, my dear, I love you. Let's remarry. 
