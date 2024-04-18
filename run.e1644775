@@ -1,0 +1,7 @@
+
+CondaError: Run 'conda init' before 'conda activate'
+
+Traceback (most recent call last):
+  File "/work/07016/cw38637/ls6/nlp/llama3_example.py", line 1, in <module>
+    import transformers
+ModuleNotFoundError: No module named 'transformers'
