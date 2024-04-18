@@ -1,5 +1,6 @@
 from pyannote.audio import Pipeline
-from pyannote_whisper.pyannote_whisper.utils import diarize_text
+# from pyannote_whisper.pyannote_whisper.utils import diarize_text
+from utils import diarize_text
 from openai import OpenAI
 import torch
 import whisper
@@ -45,7 +46,7 @@ def post_process(text_lines):
 
     TODO: figure out what needs to be done here, or if we need this in the first place
     """
-    
+
     return text_lines
 
 if __name__ == "__main__":
@@ -53,7 +54,7 @@ if __name__ == "__main__":
     lines = post_process(lines) 
     # write each line on seperate lines
 
-    with open("output.txt", "w") as f:
+    with open("output2.txt", "w") as f:
         for line in lines:
             f.write(line)
             f.write("\n")
