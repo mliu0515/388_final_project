@@ -34,8 +34,23 @@ def whisper_and_diarization(audio_file):
         lines.append(line)
     return lines
 
+def post_process(text_lines):
+    """_summary_
+
+    Args:
+        text_lines (string): text lines to be post processed
+
+    Returns:
+        string: test lines post processed
+
+    TODO: figure out what needs to be done here, or if we need this in the first place
+    """
+    
+    return text_lines
+
 if __name__ == "__main__":
     lines = whisper_and_diarization(audio_file)
+    lines = post_process(lines) 
     # write each line on seperate lines
 
     with open("output.txt", "w") as f:
