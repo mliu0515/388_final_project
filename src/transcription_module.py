@@ -1,6 +1,6 @@
 from pyannote.audio import Pipeline
 # from pyannote_whisper.pyannote_whisper.utils import diarize_text
-from utils import diarize_text
+from src.utils import diarize_text
 from openai import OpenAI
 import torch
 import whisper
