@@ -9,10 +9,4 @@
 #SBATCH -A CCR24006        # Project/Allocation name (req'd if you have more than 1)
 cd /work/07016/cw38637/ls6/nlp/
 
-module load cuda/12.2
-conda activate nlp
-
-torchrun --nproc_per_node 1 example_chat_completion.py \
-    --ckpt_dir /work/07016/cw38637/ls6/llama3-weights/Meta-Llama-3-8B-Instruct/ \
-    --tokenizer_path /work/07016/cw38637/ls6/llama3-weights/Meta-Llama-3-8B-Instruct/tokenizer.model \
-    --max_seq_len 512 --max_batch_size 6
+torchrun --nproc_per_node 1 llama3_example.py
