@@ -1,11 +1,13 @@
 from pyannote.audio import Pipeline
 # from pyannote_whisper.pyannote_whisper.utils import diarize_text
-from src.utils import diarize_text
+from utils import diarize_text
 from openai import OpenAI
 import torch
 import whisper
 import glob
 import json
+# import a library that converts mp4 to mp3
+# import moviepy.editor as mp
 
 
 KEYS_DICT = json.load(open("config.json"))
@@ -22,6 +24,20 @@ class WhisperDiarization:
                                     use_auth_token=pyannote_key)
         # self.audio_files = [open(audio_path, "rb") for audio_path in self.audio_paths]
 
+    # def to_mp3(self, video_path):
+    #     """_summary_
+    #         Given the video path (which is mp4), this function will convert the video file to mp3 format.
+
+    #     Args:
+    #         audio_path (_type_): _description_
+    #     """
+    #     # use mp to convert video to audio
+    #     video = mp.VideoFileClip(video_path)
+    #     audio_path = video_path.replace(".mp4", ".mp3")
+    #     video.audio.write_audiofile(audio_path)
+    #     return audio_path
+
+    
     def whisper_and_diarization(self, audio_file, audio_path):
         """_summary_
             Given the audio file and the path to the audio file, 
@@ -58,6 +74,7 @@ class WhisperDiarization:
         Args:
             audio_paths (_type_): list of audio paths
         """
+        print(audio_paths)
         audio_files = [open(audio_path, "rb") for audio_path in audio_paths]
         output_names = [audio_path.split("/")[-1].split(".")[0] for audio_path in audio_paths]
         for audio_file, audio_path, output_name in zip(audio_files, audio_paths, output_names):
@@ -118,6 +135,8 @@ class WhisperDiarization:
 #     return text_lines
 
 if __name__ == "__main__":
-    audio_paths = glob.glob("../../data/*.mp3")
+    audio_paths = glob.glob("../../data/audio/*.mp3")
     whisper_diarization_module = WhisperDiarization(OPENAI_KEY, PYANNOTE_KEY)
+    # audio_paths = [whisper_diarization_module.to_mp3(video_path) for video_path in video_paths]
+    # print(audio_paths)
     whisper_diarization_module.run_all(audio_paths)

@@ -1,0 +1,9 @@
+0.00 0.84 SPEAKER_02 Well, 
+1.10 6.12 SPEAKER_01 you coming? Where? Why, 
+6.22 6.72 None to the 
+6.72 7.92 None North Pole, of 
+7.92 13.72 None course! This is the Polar Express! The North Pole? 
+14.90 22.96 SPEAKER_03 I see. Hold this, please. Thank you. Is this you? 
+24.10 26.48 SPEAKER_00 Yeah. 
+26.54 42.00 SPEAKER_02 Well, it says here, no photo with the department store Santa this year. No letter to Santa. And you made your sister put out the milk and cookies. Sounds to me like this is your crucial year. If I were you, I would think about 
+42.00 42.60 None climbing on board. 
