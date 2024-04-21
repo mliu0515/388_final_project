@@ -9,4 +9,6 @@
 #SBATCH -A CCR24006        # Project/Allocation name (req'd if you have more than 1)
 cd /work/07016/cw38637/ls6/nlp/
 
-torchrun --nproc_per_node 1 llama3_example.py
+python video_analyzer.py
+
+# torchrun --nproc_per_node 1 llama3_example.py

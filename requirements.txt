@@ -1,0 +1,13 @@
+numpy
+pillow
+scenedetect
+opencv-python
+tensorflow[and-cuda]
+tf-keras
+torch
+torchvision
+torchaudio
+transformers
+
+fairscale
+sentencepiece
