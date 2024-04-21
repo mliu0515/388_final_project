@@ -1,3 +1,0 @@
-[submodule "pyannote_whisper"]
-	path = pyannote_whisper
-	url = https://github.com/yinruiqing/pyannote-whisper.git
