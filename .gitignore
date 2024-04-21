@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 config.json
+pyannote_whisper/
 
 utils.py
 # C extensions
