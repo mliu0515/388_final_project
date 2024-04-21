@@ -18,7 +18,7 @@ class MusicGenSmall:
         self.llama = ... # LlamaAPI(llama_key)
         self.openai = ... # OpenAI(api_key=openai_key)
         self.prompt = "Generate a music description for the following transcription:" # TODO: change this prompt. Rightnow it's shit.
-        self.hugging_face_token = "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"
+        self.hugging_face_token = HUGGING_FACE_TOKEN
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     def generate_music_description(self, transcription, scene_description, model="Llama"):
