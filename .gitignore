@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 config.json
+# there is this folder called pyannote_whisper, and I want to ignore it
 pyannote_whisper/
 
 utils.py
