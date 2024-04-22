@@ -1,0 +1,11 @@
+0.00 1.48 SPEAKER_00 Do not try and 
+1.48 2.22 None bend the 
+2.22 9.12 None spoon. That's impossible. Instead, only try to 
+9.12 9.98 None realize the 
+9.98 11.40 None truth. What truth? 
+12.34 13.58 SPEAKER_00 There is no spoon. 
+14.80 17.54 SPEAKER_02 There is no spoon? 
+18.14 20.48 SPEAKER_00 Then you'll see that it is not the 
+20.48 21.28 None spoon that 
+21.28 22.68 None bends. It is only yourself. 
+38.34 40.12 SPEAKER_01 The Oracle will see you now. 

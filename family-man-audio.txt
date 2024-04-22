@@ -1,0 +1,10 @@
+0.14 1.20 SPEAKER_01 I need you to 
+1.20 1.50 None remember me, 
+1.74 14.28 None Kate. How I am right now. At this very moment. I need you to put that image in your heart and keep it there. Keep it with you no 
+14.28 15.02 None matter what happens. 
+15.84 18.92 SPEAKER_02 Are you okay? 
+19.16 25.70 SPEAKER_01 Yeah. Yeah. Please just promise me. You have to 
+25.70 29.34 None promise me, Kate, because if you don't then it's like it never happened and I don't think I can live with that. 
+31.56 33.14 SPEAKER_03 I promise. 
+37.02 37.62 None Promise me again. 
+39.50 44.14 SPEAKER_03 I promise. Okay. 
