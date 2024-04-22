@@ -9,5 +9,6 @@ torchvision
 torchaudio
 transformers
 
+fire
 fairscale
 sentencepiece

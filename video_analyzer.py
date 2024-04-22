@@ -51,7 +51,7 @@ class VideoAnalyzer():
                 sentiments.tolist()
             ]
         }
-        with open(name.replace('mp4', 'txt'), 'w') as f:
+        with open(name.replace('.mp4', '-video.txt'), 'w') as f:
             json.dump(result, f)
 
     def get_frame_indexes(self, name, total_scenes=15):
