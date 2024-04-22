@@ -1,58 +1,68 @@
 import time
-import transformers
-import torch
-
-
-class Generator:
-    def __init__(self):
-        model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
-        self.pipeline = pipeline = transformers.pipeline(
-            "text-generation",
-            model=model_id,
-            model_kwargs={"torch_dtype": torch.bfloat16},
-            device="cuda",
-        )
-        self.terminators = [
-            self.pipeline.tokenizer.eos_token_id,
-            self.pipeline.tokenizer.convert_tokens_to_ids("<|eot_id|>")
-        ]
-    
-    def get_answer(self, question):
-        message = [{"role": "user", "content": "question"}]
-        prompt = self.pipeline.tokenizer.apply_chat_template(
-            message, 
-            tokenize=False, 
-            add_generation_prompt=True
-        )
-        output = self.pipeline(
-            prompt,
-            max_new_tokens=256,
-            eos_token_id=self.terminators,
-            do_sample=True,
-            temperature=0.6,
-            top_p=0.9,
-        )
-        answer = output[0]['generated_text']
-        return answer[len(prompt)]
-
+import json
+from llama import Llama
+import time
 
 start = time.time()
-generator = Generator()
 
+ckpt_dir = '/work/07016/cw38637/ls6/llama3-weights/Meta-Llama-3-8B-Instruct/'
+tokenizer_path = '/work/07016/cw38637/ls6/llama3-weights/Meta-Llama-3-8B-Instruct/tokenizer.model'
+temperature = 0.6
+top_p = 0.9
+max_seq_len = 4096
+max_batch_size = 5
+
+generator = Llama.build(
+    ckpt_dir=ckpt_dir,
+    tokenizer_path=tokenizer_path,
+    max_seq_len=max_seq_len,
+    max_batch_size=max_batch_size
+)
+
+BASE_DIR = '/work/07016/cw38637/ls6/nlp'
+videos = [
+    'family-man',
+    'harry-potter',
+    'matrix',
+    'perfect-storm',
+    'polar-express'
+]
+
+contents = []
 for video in videos:
-    with open(f'{BASE_DIR}/{video}-result.txt', 'w') as f:
-        name = f'{BASE_DIR}/{video}-content.txt'
-        question = open(name, 'r').readlines()[0].strip()
-        answer = generator.get_answer(content)
+    name = f'{BASE_DIR}/{video}-content.txt'
+    content = open(name, 'r').readlines()[0].strip()
+    contents.append(content)
+
+questions = []
+
+for content in contents:
+    questions.append([{
+        "role": "user",
+        "content": content
+    }])
+
+answers = generator.chat_completion(
+    questions,
+    temperature=temperature,
+    top_p=top_p
+)
+
+end = time.time()
+print(f'time: {end-start:.2f}s\n')
+print(answers)
+
+for idx in range(len(videos)):
+    with open(f'{BASE_DIR}/{video}-result.txt','w') as f:
+        video = videos[idx]
+        question = questions[idx][0]['content']
+        answer = answers[idx]['generation']['content']
         result = {
             'video': video,
             'question': question,
             'answer': answer
         }
         json.dump(result, f)
-
-end = time.time()
-print(f'time: {end-start:.2f}s\n')
 
 # contents = [
 #     "Given the following image captions from a video: 1) a black and white photo of a woman driving a car 2) a black and white photo of a woman driving a car 3) a black and white photo of a woman sitting in the driver's seat of a car 4) a black and white photo of a woman sitting in the driver's seat of a car 5) a black and white photo of a woman sitting in the driver's seat of a car 6) a black and white photo of a woman sitting in the driver's seat of a car 7) a black and white photo of a woman driving a car 8) a black and white photo of a woman driving a car 9) a black and white photo of a woman driving a car 10) a black and white photo of a woman driving a car 11) a black and white photo of a car driving down the road at night 12) a black and white photo of a woman in a car 13) a black and white photo of a woman in a car 14) a black and white photo of a woman in a car 15) a black and white photo of a woman in a car 16) a black and white photo of a woman in a car 17) a black and white photo of a woman in a car 18) a black and white photo of a woman in a car 19) a black and white photo of a woman in a car 20) a black and white photo of a woman in a car and the following transcriptions: 1) I said you could. I was the last I saw. (SPEAKER_01) 2) Wait a minute. I did see her some time later driving. (SPEAKER_01) 3) I think you'd better come over here to my office, quick. (SPEAKER_01) 4) Carolyn, get Mr. Cassidy for me. (SPEAKER_00) 5) After all, Cassidy, I told you, all that cash. (SPEAKER_01) 6) I'm not taking the responsibility. (SPEAKER_01) 7) Oh, for heaven's sake, girl works for you for 10 years, you trust her. (SPEAKER_01) 8) All right, yes, you'd better come over. (SPEAKER_01) and given that the sentiments of the video are: suspenseful 95.00%% afraid 5.00%% Describe the music that would fit such a video. Your output will be fed to a text to music model. To help you out, here are some prompts that worked well with the model: 1) Pop dance track with catchy melodies, tropical percussion, and upbeat rhythms, perfect for the beach 2) classic reggae track with an electronic guitar solo 3) earthy tones, environmentally conscious, ukulele-infused, harmonic, breezy, easygoing, organic instrumentation, gentle grooves 4) lofi slow bpm electro chill with organic samples 5) violins and synths that inspire awe at the finiteness of life and the universe 6) 80s electronic track with melodic synthesizers, catchy beat and groovy bass Give me only the description of the music without any explanation.",
