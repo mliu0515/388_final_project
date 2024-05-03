@@ -4,7 +4,7 @@ from scipy.linalg import sqrtm
 import glob
 
 # all the wav file in the out folder
-generated_audio_paths = glob.glob("../out/*.wav")
+generated_audio_paths = glob.glob("../out/mus/*.wav")
 reference_audio_paths = glob.glob("../data/audio/*.mp3")
 # refernece audio path should be everything except the SIMPSON.mp3
 reference_audio_paths = [path for path in reference_audio_paths if "SIMPSON" not in path]
