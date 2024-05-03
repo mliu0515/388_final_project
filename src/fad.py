@@ -2,6 +2,7 @@ import librosa
 import numpy as np
 from scipy.linalg import sqrtm
 import glob
+from frechet_audio_distance import compute_fad
 
 # all the wav file in the out folder
 generated_audio_paths = glob.glob("../out/mus/*.wav")
